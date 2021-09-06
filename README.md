@@ -1,0 +1,2 @@
+# 13033461-PacMan
+Assessment 3 and 4 are two parts of a linked assessment. In these assessments you will recreate a specified classic Atari-era game by developing nearly all the assets yourself. The game will look and feel different to the original but will have the same core game design. You will then innovate on the game to push your self-study skills and explore new game development topics on your own. These are individual assessments and it is expected that all the work done here is your own. 

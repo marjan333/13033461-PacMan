@@ -5,8 +5,8 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     int Vertical, Horizontal; 
-    [SerializeField] private GameObject tile; 
-    [SerializeField] private Sprite[] sprites; 
+    [SerializeField] private GameObject[] tiles; 
+    //[SerializeField] private Sprite[] sprites; 
 
     // Start is called before the first frame update
     void Start()
@@ -87,7 +87,8 @@ public class LevelGenerator : MonoBehaviour
     }
 
     private void spawnTile(int x, int y){
-        SpriteRenderer sr = Instantiate(tile, GridToWorldPosition(x, y), Quaternion.identity).GetComponent<SpriteRenderer>();
+        SpriteRenderer sr = Instantiate(tiles, GridToWorldPosition(x, y), Quaternion.identity).GetComponent<SpriteRenderer>();
+        //sr.sprite = sprites[]; 
     }
 
     // Update is called once per frame

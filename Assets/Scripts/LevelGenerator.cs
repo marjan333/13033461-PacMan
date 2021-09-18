@@ -5,8 +5,9 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     int Vertical, Horizontal; 
-    private GameObject[] tiles; 
+    public GameObject tile; 
     //[SerializeField] private Sprite[] sprites; 
+    public Sprite[] sprites; 
 
     // Start is called before the first frame update
 
@@ -42,14 +43,14 @@ public class LevelGenerator : MonoBehaviour
             // j = column
             for(int j = 0; j < levelMap.GetLength(1); j++){
 
-                spawnTile(i,j);
+                //spawnTile(i,j);
 
                 switch(levelMap[i,j]){
                     case 0:
                         Debug.Log("Nothing printed");
                     break; 
                     case 1:
-                       // spawnTile(i, j);
+                       spawnTile(i, j);
                         Debug.Log(string.Format("an Outside Corner tile was drawn at {0} and {1}", i , j));
                     break; 
                     case 2: 
@@ -84,35 +85,26 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private void spawnTile(int x, int y){
-        GameObject g = new GameObject("x:"+x+"y: "+y);
-        g.transform.position = new Vector3(x - (Horizontal - 0.5f), y - (Vertical - 0.5f)); 
+    // private void spawnTile(int x, int y){
+    //     GameObject obj = new GameObject("x:"+x+"y: "+y);
+    //     obj.transform.position = new Vector3(x - (Horizontal - 0.5f), y - (Vertical - 0.5f));
+    //     var sprite = obj.AddComponent<SpriteRenderer>(); 
+    //     sprite.sprite = sprites; 
+    // }
+
+    private Vector3 GridToWorldPosition(int x, int y){
+        return new Vector3(x - (Horizontal - 0.5f), y - (Vertical - 0.5f)); 
     }
 
+    private void spawnTile(int x, int y){
+        SpriteRenderer rend = Instantiate(tile, GridToWorldPosition(x, y), Quaternion.identity).GetComponent<SpriteRenderer>();
+        // rend.name = "x:"+x+"y: "+y; 
+        // rend.sprite = sprites[selectSprite()]; 
+    }
 
-
-    //  private Vector3 GridToWorldPosition(int x, int y){
-    //     return new Vector3(x - (Horizontal - 0.5f), y - (Vertical - 0.5f)); 
+    // private int selectSprite(){
+        
     // }
-
-    // private void spawnTile(int x, int y){
-    //     int i; 
-    //     int j; 
-    //     for(int index = 0; index < tiles.GetLength(0); index++){
-    //         if(tiles[index] == levelMap[i,j]){
-    //             Instantiate(tiles[index], GridToWorldPosition(x, y), Quaternion.identity);
-    //         }
-    //     }
-    // }
-   
-    // private void spawnTile(int x, int y){
-    //     SpriteRenderer sr = Instantiate(tiles, GridToWorldPosition(x, y), Quaternion.identity).GetComponent<SpriteRenderer>();
-    //     //sr.sprite = sprites[]; 
-    // }
-
-    // Update is called once per frame
-
-
 
     void Update()
     {

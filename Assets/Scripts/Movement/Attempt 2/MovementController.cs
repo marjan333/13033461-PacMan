@@ -9,11 +9,11 @@ public class MovementController : MonoBehaviour
     public Transform[] targets; 
 
     //public Movement movement; 
-    
-    private bool rightTurn = false; 
-    private bool leftTurn = false; 
-    private bool up = false; 
-    private bool down = false; 
+
+    // private bool rightTurn = false; 
+    // private bool leftTurn = false; 
+    // private bool up = false; 
+    // private bool down = false; 
 
     public Animator animator; 
 
@@ -28,16 +28,16 @@ public class MovementController : MonoBehaviour
     void Update()
     {
         if(obj.transform.position == targets[0].transform.position){
-
+            animator.SetBool("IsRight", true); 
         }
-        if(obj.transform.position == targets[1].transform.position){
-
+        else if(obj.transform.position == targets[1].transform.position){
+            animator.SetBool("IsDown", true); 
         }
-        if(obj.transform.position == targets[2].transform.position){
-
+        else if(obj.transform.position == targets[2].transform.position){
+            animator.SetBool("IsLeft", true); 
         }
-        if(obj.transform.position == targets[3].transform.position){
-
+        else if(obj.transform.position == targets[3].transform.position){
+            animator.SetBool("IsUp", true); 
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement1 : MonoBehaviour
 {
     [SerializeField] private GameObject item; 
     private Tweener tweener; 

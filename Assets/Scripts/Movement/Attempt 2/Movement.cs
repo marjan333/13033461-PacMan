@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private Vector3[] positions = {new Vector3(-12.0f,7.5f,0.0f), new Vector3(10.0f,7.5f,0.0f), new Vector3(10.0f,-0.5f,0.0f), new Vector3(-12.0f,-0.5f,0.0f)};
+    //private Tween activeTween; 
+
+    public Vector3[] positions; // = {new Vector3(-12.0f,7.5f,0.0f), new Vector3(10.0f,7.5f,0.0f), new Vector3(10.0f,-0.5f,0.0f), new Vector3(-12.0f,-0.5f,0.0f)};
     public bool repeat = false; 
     IEnumerator Start() {
         while(!repeat){
@@ -31,4 +33,10 @@ public class Movement : MonoBehaviour
 
         yield return null;
     }
+
+    // public void AddTween(){
+    //     if(activeTween == null){
+    //         activeTween = new Tween();
+    //     }
+    // }
 }

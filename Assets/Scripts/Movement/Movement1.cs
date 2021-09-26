@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement1 : MonoBehaviour
-{   
+{
     [SerializeField] private GameObject item; 
     private Tweener tweener; 
-    public Transform[] targets; 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,31 +15,20 @@ public class Movement1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(item.transform.position == targets[1].transform.position){
-            Debug.Log("condition1");
-        tweener.AddTween(item.transform, item.transform.position, new Vector3 (-12.0f,7.5f,0.0f), 2f);
-        gameObject.GetComponent<Animator>().Play("Bear_Walk_Left"); 
-           
-         
+        if(Input.GetKeyDown("a")){
+        tweener.AddTween(item.transform, item.transform.position, new Vector3 (-12.0f,7.5f,0.0f), 1.0f);
         }
 
-        if(item.transform.position == targets[2].transform.position){
-            Debug.Log("condition2");
-            tweener.AddTween(item.transform, item.transform.position, new Vector3 (10.0f,7.5f,0.0f), 2.5f);
-             gameObject.GetComponent<Animator>().Play("Bear_Up");
-            
+        if(Input.GetKeyDown("d")){
+            tweener.AddTween(item.transform, item.transform.position, new Vector3 (10.0f,7.5f,0.0f), 1.0f);
         }
 
-        if(item.transform.position == targets[3].transform.position){
-            Debug.Log("condition3");
-            tweener.AddTween(item.transform, item.transform.position, new Vector3 (10.0f,-0.5f,0.0f), 2f);
-            gameObject.GetComponent<Animator>().Play("Bear_Walk_Right"); 
+        if(Input.GetKeyDown("s")){
+            tweener.AddTween(item.transform, item.transform.position, new Vector3 (10.0f,-0.5f,0.0f), 1.0f);
         }
 
-        if(item.transform.position == targets[0].transform.position){
-             Debug.Log("condition4");
-            tweener.AddTween(item.transform, item.transform.position, new Vector3 (-12.0f,-0.5f,0.0f), 2.5f);
-            gameObject.GetComponent<Animator>().Play("Bear_Down"); 
+        if(Input.GetKeyDown("w")){
+            tweener.AddTween(item.transform, item.transform.position, new Vector3 (-12.0f,-0.5f,0.0f), 1.0f);
         }
         
     }

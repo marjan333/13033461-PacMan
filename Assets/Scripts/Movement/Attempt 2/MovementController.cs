@@ -28,16 +28,24 @@ public class MovementController : MonoBehaviour
     void Update()
     {
         if(obj.transform.position == targets[0].transform.position){
-            animator.SetBool("IsRight", true); 
+            Debug.Log("condition1");
+            gameObject.GetComponent<Animator>().Play("Bear_Walk_Right");
+            //animator.SetBool("IsRight", true); 
         }
-        else if(obj.transform.position == targets[1].transform.position){
-            animator.SetBool("IsDown", true); 
+        if(obj.transform.position == targets[1].transform.position){
+             Debug.Log("condition2");
+             gameObject.GetComponent<Animator>().Play("Bear_Down");
+            //animator.SetBool("IsDown", true); 
         }
-        else if(obj.transform.position == targets[2].transform.position){
-            animator.SetBool("IsLeft", true); 
+        if(obj.transform.position == targets[2].transform.position){
+             Debug.Log("condition3");
+             gameObject.GetComponent<Animator>().Play("Bear_Walk_Left");
+            //animator.SetBool("IsLeft", true); 
         }
-        else if(obj.transform.position == targets[3].transform.position){
-            animator.SetBool("IsUp", true); 
+        if(obj.transform.position == targets[3].transform.position){
+             Debug.Log("condition4");
+             gameObject.GetComponent<Animator>().Play("Bear_Up");
+            //animator.SetBool("IsUp", true); 
         }
     }
 }

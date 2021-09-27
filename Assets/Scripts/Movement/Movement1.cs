@@ -21,15 +21,12 @@ public class Movement1 : MonoBehaviour
             Debug.Log("condition1");
         tweener.AddTween(item.transform, item.transform.position, new Vector3 (-12.0f,7.5f,0.0f), 2f);
         gameObject.GetComponent<Animator>().Play("Bear_Walk_Left"); 
-           
-         
         }
 
         if(item.transform.position == targets[2].transform.position){
             Debug.Log("condition2");
             tweener.AddTween(item.transform, item.transform.position, new Vector3 (10.0f,7.5f,0.0f), 2.5f);
-             gameObject.GetComponent<Animator>().Play("Bear_Up");
-            
+             gameObject.GetComponent<Animator>().Play("Bear_Up");     
         }
 
         if(item.transform.position == targets[3].transform.position){

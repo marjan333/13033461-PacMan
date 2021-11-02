@@ -27,12 +27,12 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            tweener.AddTween(item.transform, item.transform.position, item.transform.position += Vector3.back, 1.0f);
+            tweener.AddTween(item.transform, item.transform.position, item.transform.position += Vector3.down, 1.0f);
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            tweener.AddTween(item.transform, item.transform.position, item.transform.position += Vector3.forward, 1.0f);
+            tweener.AddTween(item.transform, item.transform.position, item.transform.position += Vector3.up, 1.0f);
         }
 
     }

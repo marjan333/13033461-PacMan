@@ -4,37 +4,41 @@ using UnityEngine;
 
 public class Tweener : MonoBehaviour
 {
-    private Tween activeTween;
+    //private Tween activeTween;
     private List<Tween> activeTweens;
-    //private float overallDist; 
-    private float ratioT;
-    private float cubic;
+
+    private Tween activeTween;
     private float dist;
 
     void Start()
     {
         activeTweens = new List<Tween>();
     }
+
     void Update()
     {
-        if (activeTween != null)
+        Tween();
+
+
+    }
+
+    private void Tween()
+    {
+        //Tween activeTween;
+        for (int i = activeTweens.Count - 1; i >= 0; i--) //Tween activeTween in activeTweens.Reverse<Tween>())
         {
-            ratioT = (Time.time - activeTween.StartTime) / activeTween.Duration;
-            cubic = ratioT * ratioT * ratioT;
-            // between target current position and end position.
+            activeTween = activeTweens[i];
             dist = Vector3.Distance(activeTween.Target.position, activeTween.EndPos);
 
             if (dist > 0.1f)
             {
-                //lerp: Vector3(a,b,ratio t)
-                activeTween.Target.position = Vector3.Lerp(activeTween.StartPos, activeTween.EndPos, cubic);
+                float t = (Time.time - activeTween.StartTime) / activeTween.Duration;
+                activeTween.Target.position = Vector3.Lerp(activeTween.StartPos, activeTween.EndPos, t);
             }
-
-            if (dist <= 0.1f)
+            else
             {
-                Debug.Log("Null reached");
                 activeTween.Target.position = activeTween.EndPos;
-                activeTween = null;
+                activeTweens.RemoveAt(i);
             }
         }
     }

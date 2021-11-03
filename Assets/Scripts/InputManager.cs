@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InputManger : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
     public void Exit()
     {

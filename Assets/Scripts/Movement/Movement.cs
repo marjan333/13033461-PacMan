@@ -4,45 +4,80 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    //public GameObject item; 
-    public Vector3 startMarker;
-    public Vector3 endMarker;    // Movement speed in units per second.
+    [SerializeField] private GameObject item;
+    private Tweener tweener;
+    private List<GameObject> itemList;
 
-    public float speed = 1.0F;    // Time when the movement started.
-    private float startTime;    // Total distance between the markers.
-    private float journeyLength; void Start()
+    private string lastInput;
+    private Animator anim;
+    private ParticleSystem ps;
+
+
+    // Use this for initialization
+    void Start()
     {
-        // right = Vector3.right; 
-        // left = Vector3.left; 
-        // Keep a note of the time the movement started.
-        startTime = Time.time;        // Calculate the journey length.
-        journeyLength = Vector3.Distance(startMarker, endMarker);
-    }    // Move to the target end position.
+        tweener = GetComponent<Tweener>();
+        itemList = new List<GameObject>();
+        itemList.Add(item);
+        anim = gameObject.GetComponent<Animator>();
+        ps = GetComponent<ParticleSystem>();
+        ps.Stop();
+    }
+
+    // Update is called once per frame
     void Update()
     {
-        // Distance moved equals elapsed time times speed..
-        float distCovered = (Time.time - startTime) * speed;        // Fraction of journey completed equals current distance divided by total distance.
-        float fractionOfJourney = distCovered / journeyLength;
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown("a"))
+            LoopAddTween("a");
+        if (Input.GetKeyDown("d"))
+            LoopAddTween("d");
+        if (Input.GetKeyDown("s"))
+            LoopAddTween("s");
+        if (Input.GetKeyDown("w"))
+            LoopAddTween("w");
+
+    }
+
+
+    private void LoopAddTween(string key)
+    {
+        bool added = false;
+        foreach (GameObject item in itemList)
         {
-            // Set our position as a fraction of the distance between the markers.
-            transform.position = Vector3.Lerp(startMarker, transform.position + Vector3.right, fractionOfJourney);
+            if (key == "a")
+            {
+                added = tweener.AddTween(item.transform, item.transform.position, item.transform.position + Vector3.left, 1.5f);
+                anim.Play("Bear_Walk_Left");
+                //ps.Play();
+            }
+
+            if (key == "d")
+            {
+                added = tweener.AddTween(item.transform, item.transform.position, item.transform.position + Vector3.right, 1.5f);
+                anim.Play("Bear_Walk_Right");
+            }
+
+            if (key == "s")
+            {
+                added = tweener.AddTween(item.transform, item.transform.position, item.transform.position + Vector3.down, 0.5f);
+                anim.Play("Bear_Down");
+            }
+            if (key == "w")
+            {
+                added = tweener.AddTween(item.transform, item.transform.position, item.transform.position + Vector3.up, 0.5f);
+                anim.Play("Bear_Up");
+            }
+            if (Input.anyKeyDown)
+            {
+                ps.Play();
+            }
+            if (added)
+                break;
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            // Set our position as a fraction of the distance between the markers.
-            transform.position = Vector3.Lerp(startMarker, transform.position + Vector3.left, fractionOfJourney);
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            // Set our position as a fraction of the distance between the markers.
-            transform.position = Vector3.Lerp(startMarker, transform.position + Vector3.up, fractionOfJourney);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            // Set our position as a fraction of the distance between the markers.
-            transform.position = Vector3.Lerp(startMarker, transform.position + Vector3.down, fractionOfJourney);
-        }
+
+        lastInput = key;
+        Debug.Log(lastInput);
+
     }
 }

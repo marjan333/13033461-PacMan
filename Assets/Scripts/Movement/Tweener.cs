@@ -5,31 +5,20 @@ using UnityEngine;
 public class Tweener : MonoBehaviour
 {
     private Tween activeTween;
+    private List<Tween> activeTweens;
     //private float overallDist; 
     private float ratioT;
     private float cubic;
     private float dist;
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        activeTweens = new List<Tween>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        // consider: position at ratio = start + (duration * ratio t)
-        // duration = range = end - start 
-        // To find ratio t: rearrange the formula to get ratio t = (position at t - start)/duration
-        // t = time/ duration 
-
         if (activeTween != null)
         {
-
-            //overallDist = Vector3.Distance(activeTween.StartPos, activeTween.EndPos);
-            //ratioT = Time.time/activeTween.Duration; 
-            //ratioT = (Time.time - activeTween.StartTime)/overallDist; 
             ratioT = (Time.time - activeTween.StartTime) / activeTween.Duration;
             cubic = ratioT * ratioT * ratioT;
             // between target current position and end position.
@@ -49,12 +38,24 @@ public class Tweener : MonoBehaviour
             }
         }
     }
-
-    public void AddTween(Transform targetObject, Vector3 startPos, Vector3 endPos, float duration)
+    public bool AddTween(Transform targetObject, Vector3 startPos, Vector3 endPos, float duration)
     {
-        if (activeTween == null)
+        if (!TweenExists(targetObject))
         {
-            activeTween = new Tween(targetObject, startPos, endPos, Time.time, duration);
+            activeTweens.Add(new Tween(targetObject, startPos, endPos, Time.time, duration));
+            return true;
         }
+        return false;
+    }
+
+
+    public bool TweenExists(Transform target)
+    {
+        foreach (Tween activeTween in activeTweens)
+        {
+            if (activeTween.Target.transform == target)
+                return true;
+        }
+        return false;
     }
 }

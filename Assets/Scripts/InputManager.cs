@@ -7,9 +7,10 @@ public class InputManager : MonoBehaviour
 {
     public void Exit()
     {
-        if (GameManager.currentGameState == GameManager.GameState.PacMan)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+    public void Level1()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CherryController : MonoBehaviour
 {
+    private Vector3 CherryPos = new Vector3(-45, -19, 0);
     public GameObject prefab;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class CherryController : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(prefab);
+            Instantiate(prefab, CherryPos, Quaternion.identity);
             yield return new WaitForSeconds(10.0f);
         }
 

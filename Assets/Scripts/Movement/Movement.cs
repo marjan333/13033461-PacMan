@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     //private string lastInput;
     private Animator anim;
     private ParticleSystem ps;
+    private AudioSource walk;
 
     KeyCode lastInput;
     KeyCode currentInput;
@@ -22,7 +23,7 @@ public class Movement : MonoBehaviour
         itemList = new List<GameObject>();
         itemList.Add(item);
         anim = gameObject.GetComponent<Animator>();
-        AudioSource audio = GetComponent<AudioSource>();
+        walk = GetComponent<AudioSource>();
         ps = GetComponent<ParticleSystem>();
         ps.Stop();
     }
@@ -36,29 +37,43 @@ public class Movement : MonoBehaviour
         {
             LoopAddTween("a");
             lastInput = KeyCode.A;
+            walk.Play();
         }
         else if (Input.GetKeyUp("a"))
             anim.Play("Idle_Left");
+        //walk.Stop();
 
         if (Input.GetKeyDown("d"))
         {
             LoopAddTween("d");
             lastInput = KeyCode.D;
+            walk.Play();
         }
         else if (Input.GetKeyUp("d"))
             anim.Play("Idle_Right");
+        //walk.Stop();
 
         if (Input.GetKeyDown("s"))
         {
             LoopAddTween("s");
             lastInput = KeyCode.S;
+            // walk.Play();
         }
+        // else if (Input.GetKeyUp("s"))
+        // {
+        //     walk.Stop();
+        // }
 
         if (Input.GetKeyDown("w"))
         {
             LoopAddTween("w");
             lastInput = KeyCode.W;
+            // walk.Play();
         }
+        // else if (Input.GetKeyUp("w"))
+        // {
+        //     walk.Stop();
+        // }
 
         if (Input.GetKeyUp(lastInput)) lastInput = KeyCode.None;
         //Debug.Log(lastInput);

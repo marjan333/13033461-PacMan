@@ -11,7 +11,8 @@ public class Movement : MonoBehaviour
     private string lastInput;
     private Animator anim;
     private ParticleSystem ps;
-
+    //private bool isMovingRight = false;
+    //private bool isMovingLeft = false;
 
     // Use this for initialization
     void Start()
@@ -20,6 +21,7 @@ public class Movement : MonoBehaviour
         itemList = new List<GameObject>();
         itemList.Add(item);
         anim = gameObject.GetComponent<Animator>();
+
         ps = GetComponent<ParticleSystem>();
         ps.Stop();
     }
@@ -28,10 +30,15 @@ public class Movement : MonoBehaviour
     void Update()
     {
 
+
         if (Input.GetKeyDown("a"))
             LoopAddTween("a");
+        else if (Input.GetKeyUp("a"))
+            anim.Play("Idle_Left");
         if (Input.GetKeyDown("d"))
             LoopAddTween("d");
+        else if (Input.GetKeyUp("d"))
+            anim.Play("Idle_Right");
         if (Input.GetKeyDown("s"))
             LoopAddTween("s");
         if (Input.GetKeyDown("w"))
@@ -45,11 +52,12 @@ public class Movement : MonoBehaviour
         bool added = false;
         foreach (GameObject item in itemList)
         {
+
             if (key == "a")
             {
                 added = tweener.AddTween(item.transform, item.transform.position, item.transform.position + Vector3.left, 1.5f);
                 anim.Play("Bear_Walk_Left");
-                //ps.Play();
+                //isMovingLeft = true;
             }
 
             if (key == "d")

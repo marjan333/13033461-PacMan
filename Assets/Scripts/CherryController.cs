@@ -9,6 +9,17 @@ public class CherryController : MonoBehaviour
     private float maxCam;
     private Vector3 spawnPos;
     public GameObject prefab;
+    private float duration;
+    public Transform startMarker;
+    private float startTime;
+    private float journeyLength;
+
+    private Bounds b;
+    private float x;
+    private float y;
+    private float z;
+    Vector3 pos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +27,16 @@ public class CherryController : MonoBehaviour
         Camera cam = mainSceneCam.GetComponent<Camera>();
         Transform camPos = cam.transform;
 
-        // minCam = Camera.main.orthographicSize;
-        // maxCam = Camera.main.orthographicSize + 2;
+        // b = new Bounds(new Vector3(13, -20, -250), new Vector3(32, 32, 0));
+
+        // x = Random.Range(32, 35);
+        // y = Random.Range(32, 35);
+        // z = 0; 
+        // pos = new Vector3(x, y, z);
+        // transform.position = pos;
+
+        minCam = Camera.main.orthographicSize;
+        maxCam = Camera.main.orthographicSize + 2;
 
     }
 
@@ -29,12 +48,16 @@ public class CherryController : MonoBehaviour
         spawnPos.y = Random.Range(minY, maxY);
         spawnPos.z = 0;
         StartCoroutine("CherrySpawn");
+
+
     }
 
     IEnumerator CherrySpawn()
     {
+        // if () {}
+        Instantiate(prefab);
 
-        Instantiate(prefab, new Vector3(spawnPos.x, spawnPos.y, spawnPos.z), Quaternion.identity);
+
         yield return new WaitForSeconds(10.0f);
 
 

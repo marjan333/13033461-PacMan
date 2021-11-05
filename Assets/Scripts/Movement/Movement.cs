@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        tweener = GetComponent<Tweener>();
         itemList = new List<GameObject>();
         itemList.Add(item);
         anim = gameObject.GetComponent<Animator>();
@@ -40,7 +41,7 @@ public class Movement : MonoBehaviour
         }
         else if (Input.GetKeyUp("a"))
             anim.Play("Idle_Left");
-
+        //walk.Stop();
 
         if (Input.GetKeyDown("d"))
         {
@@ -50,20 +51,24 @@ public class Movement : MonoBehaviour
         }
         else if (Input.GetKeyUp("d"))
             anim.Play("Idle_Right");
-
+        //walk.Stop();
 
         if (Input.GetKeyDown("s"))
         {
             LoopAddTween("s");
             lastInput = KeyCode.S;
-
+            // walk.Play();
         }
+        // else if (Input.GetKeyUp("s"))
+        // {
+        //     walk.Stop();
+        // }
 
         if (Input.GetKeyDown("w"))
         {
             LoopAddTween("w");
             lastInput = KeyCode.W;
-
+            // walk.Play();
         }
         // else if (Input.GetKeyUp("w"))
         // {

@@ -8,8 +8,9 @@ public class Tweener : MonoBehaviour
     private List<Tween> activeTweens;
 
     private Tween activeTween;
-    private float dist;
-
+    [HideInInspector] public float dist;
+    // private Vector3 lastInput; 
+    //private Vector3 currentInput;
     void Start()
     {
         activeTweens = new List<Tween>();

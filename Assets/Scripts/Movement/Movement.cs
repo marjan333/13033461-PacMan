@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     private ParticleSystem ps;
 
     KeyCode lastInput;
+    KeyCode currentInput;
 
     // Use this for initialization
     void Start()
@@ -21,7 +22,7 @@ public class Movement : MonoBehaviour
         itemList = new List<GameObject>();
         itemList.Add(item);
         anim = gameObject.GetComponent<Animator>();
-
+        AudioSource audio = GetComponent<AudioSource>();
         ps = GetComponent<ParticleSystem>();
         ps.Stop();
     }
@@ -62,7 +63,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyUp(lastInput)) lastInput = KeyCode.None;
         //Debug.Log(lastInput);
 
-        Vector2 direction; // (0, 0) by default
+        Vector3 direction; // (0, 0) by default
         switch (lastInput)
         {
             case KeyCode.W: direction.y = 1; break;
@@ -70,6 +71,11 @@ public class Movement : MonoBehaviour
             case KeyCode.S: direction.y = -1; break;
             case KeyCode.D: direction.x = 1; break;
         }
+
+        // if (tweener.dist < 0.1f)
+        // {
+        //     currentInput = lastInput;
+        // }
 
     }
     private void LoopAddTween(string key)

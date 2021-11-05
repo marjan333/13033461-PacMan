@@ -59,12 +59,6 @@ public class Movement : MonoBehaviour
             lastInput = KeyCode.W;
         }
 
-
-        // if (Input.GetKeyDown(KeyCode.W)) lastInput = KeyCode.W;
-        // else if (Input.GetKeyDown(KeyCode.A)) lastInput = KeyCode.A;
-        // else if (Input.GetKeyDown(KeyCode.S)) lastInput = KeyCode.S;
-        // else if (Input.GetKeyDown(KeyCode.D)) lastInput = KeyCode.D;
-
         if (Input.GetKeyUp(lastInput)) lastInput = KeyCode.None;
         //Debug.Log(lastInput);
 
@@ -78,8 +72,6 @@ public class Movement : MonoBehaviour
         }
 
     }
-
-
     private void LoopAddTween(string key)
     {
         bool added = false;
@@ -115,9 +107,5 @@ public class Movement : MonoBehaviour
             if (added)
                 break;
         }
-
-        // lastInput = key;
-
-
     }
 }

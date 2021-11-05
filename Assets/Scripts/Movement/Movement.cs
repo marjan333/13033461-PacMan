@@ -25,19 +25,20 @@ public class Movement : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         walk = GetComponent<AudioSource>();
         ps = GetComponent<ParticleSystem>();
-        ps.Stop();
+        //ps.Stop();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //walk.enabled = false;
 
         if (Input.GetKeyDown("a"))
         {
             LoopAddTween("a");
             lastInput = KeyCode.A;
             walk.Play();
+
         }
         else if (Input.GetKeyUp("a"))
             anim.Play("Idle_Left");
@@ -48,6 +49,7 @@ public class Movement : MonoBehaviour
             LoopAddTween("d");
             lastInput = KeyCode.D;
             walk.Play();
+
         }
         else if (Input.GetKeyUp("d"))
             anim.Play("Idle_Right");
@@ -57,7 +59,7 @@ public class Movement : MonoBehaviour
         {
             LoopAddTween("s");
             lastInput = KeyCode.S;
-            // walk.Play();
+            walk.Play();
         }
         // else if (Input.GetKeyUp("s"))
         // {
@@ -68,7 +70,7 @@ public class Movement : MonoBehaviour
         {
             LoopAddTween("w");
             lastInput = KeyCode.W;
-            // walk.Play();
+            walk.Play();
         }
         // else if (Input.GetKeyUp("w"))
         // {

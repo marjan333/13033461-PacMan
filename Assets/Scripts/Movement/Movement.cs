@@ -38,28 +38,31 @@ public class Movement : MonoBehaviour
             LoopAddTween("a");
             lastInput = KeyCode.A;
             walk.Play();
+            ps.Play();
 
         }
         else if (Input.GetKeyUp("a"))
             anim.Play("Idle_Left");
-        //walk.Stop();
+
 
         if (Input.GetKeyDown("d"))
         {
             LoopAddTween("d");
             lastInput = KeyCode.D;
             walk.Play();
+            ps.Play();
 
         }
         else if (Input.GetKeyUp("d"))
             anim.Play("Idle_Right");
-        //walk.Stop();
+
 
         if (Input.GetKeyDown("s"))
         {
             LoopAddTween("s");
             lastInput = KeyCode.S;
             walk.Play();
+            ps.Play();
         }
 
 
@@ -109,12 +112,12 @@ public class Movement : MonoBehaviour
 
             if (key == "s")
             {
-                added = tweener.AddTween(item.transform, item.transform.position, item.transform.position + Vector3.down, 0.5f);
+                added = tweener.AddTween(item.transform, item.transform.position, item.transform.position + Vector3.down, 1.5f);
                 anim.Play("Bear_Down");
             }
             if (key == "w")
             {
-                added = tweener.AddTween(item.transform, item.transform.position, item.transform.position + Vector3.up, 0.5f);
+                added = tweener.AddTween(item.transform, item.transform.position, item.transform.position + Vector3.up, 1.5f);
                 anim.Play("Bear_Up");
             }
             if (Input.anyKeyDown)

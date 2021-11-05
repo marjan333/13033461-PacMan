@@ -61,10 +61,7 @@ public class Movement : MonoBehaviour
             lastInput = KeyCode.S;
             walk.Play();
         }
-        // else if (Input.GetKeyUp("s"))
-        // {
-        //     walk.Stop();
-        // }
+
 
         if (Input.GetKeyDown("w"))
         {
@@ -72,10 +69,7 @@ public class Movement : MonoBehaviour
             lastInput = KeyCode.W;
             walk.Play();
         }
-        // else if (Input.GetKeyUp("w"))
-        // {
-        //     walk.Stop();
-        // }
+
 
         if (Input.GetKeyUp(lastInput)) lastInput = KeyCode.None;
         //Debug.Log(lastInput);
